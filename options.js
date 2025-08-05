@@ -68,12 +68,14 @@ function saveOptions() {
     const url = document.getElementById("ollama-url").value;
     const model = document.getElementById("model-select").value;
     const style = document.getElementById("style-select").value;
+    const historyLimit = document.getElementById("history-limit").value;
 
     chrome.storage.local.set(
         {
             ollamaUrl: url,
             ollamaModel: model,
             rewriteStyle: style,
+            historyLimit: parseInt(historyLimit, 10), // Store as number
         },
         () => {
             // Update status to let user know options were saved.
@@ -91,14 +93,15 @@ function restoreOptions() {
     chrome.storage.local.get(
         {
             ollamaUrl: "http://localhost:11434",
-            ollamaModel: "", // Don't default a model, let it be selected after fetch
+            ollamaModel: "",
             rewriteStyle: "professionally",
+            historyLimit: 10, // Default history limit
         },
         (items) => {
             document.getElementById("ollama-url").value = items.ollamaUrl;
             document.getElementById("style-select").value = items.rewriteStyle;
+            document.getElementById("history-limit").value = items.historyLimit;
 
-            // Fetch models on page load, and pass the saved model to be selected
             fetchOllamaModels(items.ollamaModel);
         },
     );

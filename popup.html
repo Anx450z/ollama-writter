@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ollama Rewriter</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <button id="tab-result" class="tab-btn active">Result</button>
+            <button id="tab-history" class="tab-btn">History</button>
+        </div>
+
+        <!-- Current Result View -->
+        <div id="view-result" class="view active">
+            <div id="result-content">
+                <!-- Content will be injected by JS -->
+            </div>
+            <div id="result-placeholder">
+                <p>Right-click on selected text and choose "Rewrite with Ollama" to get started.</p>
+            </div>
+        </div>
+
+        <!-- History View -->
+        <div id="view-history" class="view">
+            <div id="history-list">
+                <!-- History items will be injected by JS -->
+            </div>
+             <div id="history-placeholder">
+                <p>Your rewrite history will appear here.</p>
+            </div>
+            <button id="clear-history-btn">Clear History</button>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
